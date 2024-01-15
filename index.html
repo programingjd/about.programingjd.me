@@ -19,7 +19,8 @@ grid-template:
   "a b b" 5ch
   "a c d" 5ch / 12ch 1fr 1fr
 }
-.custom-font{opacity:0;transition:opacity 2500ms ease-in;}
+.custom-font{opacity:0;transition:opacity 600ms ease-in}
+@media(prefers-reduced-motion:reduce){.custom-font{transition-duration:0ms}}
 div[role="term"],section{padding:.5em 1rem}
 div[role="term"],h1{font:900 1.5em 'merriweather';font-stretch:112%}
 .phonetic{font:500 1em 'ebgaramond'}
