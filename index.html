@@ -14,7 +14,7 @@
 html{width:100%;height:100%;font:clamp(12pt, 2vmin + 1vmax, 24pt) sans-serif;background:var(--bg);color:var(--fg)}
 body{min-height:100%;padding:4rem 2rem;display:grid;grid-template-rows:1fr 12ch;gap:6ch;place-content:center}
 body>section:first-child{display:grid;place-content:center}
-body>section:last-child{display:grid;gap:1ch;
+body>section:last-of-type{display:grid;gap:1ch;
 grid-template:
   "a b b" 5ch
   "a c d" 5ch / 12ch 1fr 1fr
@@ -85,5 +85,10 @@ svg path{fill:var(--fg)}
 </svg>
 </a>
 </section>
+<script>
+document.querySelectorAll('link[media="print"]').forEach(link=>{
+  if(!link.loaded) link.addEventListener('load',_=>link.media='all');
+});
+</script>
 </body>
 </html>
