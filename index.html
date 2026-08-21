@@ -13,7 +13,12 @@
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="https://about.programingjd.me">
 <style>
-:root{color-scheme:dark light only;--fg:#ccc;--bg:#222;--adj:0}
+:root{
+  --fg:#ccc;--bg:#222;--adj:0;--link:#3ce;--accent:#d42;
+  --bg:light-dark()
+  color-scheme:dark light only;
+  accent-color:var(--accent);
+}
 @media(prefers-color-scheme:light){:root{--fg:#333;--bg:#eee;--adj:100}}
 *{margin:0;padding:0;box-sizing:border-box}
 html{width:100%;height:100%;font:clamp(12pt, 2vmin + 1vmax, 24pt) sans-serif;background:var(--bg);color:var(--fg)}
@@ -42,10 +47,12 @@ div[role="definition"]:first-child{font-size:1.15em}
 div[role="definition"]:not(:first-child){font-size:.85em}
 picture,img{width:auto;height:100%;aspect-ratio:1;background:rgba(127,127,127,0.25);grid-area:a}
 img{border:2px solid var(--fg);box-sizing:content-box;border-radius:1ch}
-h1{grid-area:b;padding:.5rem .25rem}
+h1{grid-area:b;padding:.5rem .25rem;color:var(--accent)}
 svg{height:4ch;width:auto;max-width:20vw}
 svg{grid-area:c}
-svg path{fill:var(--fg)}
+svg path{color:inherit;fill:currentColor}
+a{color:inherit}
+a:hover{color:var(--link)}
 </style>
 <noscript><link rel="stylesheet" href="/style.css"></noscript>
 </head>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>template</title>
+<meta name="theme-color" content="#d42">
+<meta name="description" content="template description"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="favicon.ico" sizes="16x16">
+<link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://about.programingjd.me/template">
+<style>
+html{
+  --foreground-color:light-dark(#333,#ccc);
+  --background-color:light-dark(#eee,#222);
+  --link-color:#3ce;--accent-color:#d42;
+  --font-weight-adjustment:0;
+  color-scheme:dark light only;
+  accent-color:var(--accent-color);
+  width:100%;height:100%;
+  font:calc(400 + var(--font-weight-adjustment)) clamp(12pt, 2vmin + 1vmax, 24pt) sans-serif;
+  background:var(--background-color);
+  color:var(--foreground-color);
+}
+:is(*){margin:0;padding:0;box-sizing:border-box}
+body{
+  min-height:100%;padding:4rem 2rem;
+  display:grid;grid-template-rows:1fr 12ch;gap:6ch;place-content:center;
+}
+a{color:inherit}
+a:hover{color:var(--link)}
+header{
+  position:absolute;
+  top:0;left:0;right:0;
+  display:grid;
+  justify-content:end;
+  div{
+    display:grid;
+    place-items:center;
+    &:hover{color:var(--link-color)}
+    input.color-scheme{
+      position:absolute;
+      inset:0;
+      appearance:none;margin:0;padding:0;
+      cursor:pointer;
+      &~svg{
+        display:none;
+        padding:.5em;
+        width:2em;height:2em;
+        path{fill:currentColor}
+      }
+    }
+  }
+}
+@media(prefers-color-scheme:light){
+  :root{
+    color-scheme:light only;
+    --font-weight-adjustment:100;
+    &:has(header input:checked){
+      color-scheme:dark only;
+      --font-weight-adjustment:0;
+    }
+    header input.color-scheme{
+      &~svg.light{display:block}
+      &~svg.dark{display:none}
+      &:checked{
+        &~svg.light{display:none}
+        &~svg.dark{display:block}
+      }
+    }
+  }
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    color-scheme:dark only;
+    --font-weight-adjustment:0;
+    &:has(header input:checked){
+      color-scheme:light only;
+      --font-weight-adjustment:100;
+    }
+    header input.color-scheme{
+      &~svg.light{display:none}
+      &~svg.dark{display:block}
+      &:checked{
+        &~svg.light{display:block}
+        &~svg.dark{display:none}
+      }
+    }
+  }
+}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <input class="color-scheme" type="checkbox" title="Toggle Light/Dark Mode">
+    <svg class="light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M136 16q-1-7-8-8-7 1-8 8v32h16zM54 43l23 23-11 11-23-23a8 8 0 0 1 11-11m-6 77H16q-7 1-8 8 1 7 8 8h32zm-5 82 23-23 11 11-23 23a8 8 0 1 1-11-11m77 6v32q1 7 8 8 7-1 8-8v-32zm82 5-23-23 11-11 23 23a8 8 0 1 1-11 11m6-77h32q7-1 8-8-1-7-8-8h-32zm5-82-23 23-11-11 23-23a8 8 0 1 1 11 11"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M192 128c0 35-29 64-64 64s-64-29-64-64 29-64 64-64 64 29 64 64"></path></svg>
+    <svg class="dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M184 160q22 0 40-10l17-8-6 18A112 112 0 1 1 96 21l18-6-8 17Q96 51 96 72c0 49 39 88 88 88"></path></svg>
+  </div>
+</header>
+<main>
+  <h1>Title</h1>
+  <section>Template</section>
+</main>
+<script type="module">
+const colorSchemeOverride=localStorage.getItem('color-scheme');
+if(colorSchemeOverride&&!window.matchMedia(`(prefers-color-scheme: ${colorSchemeOverride})`).matches){
+  document.querySelectorAll('.color-scheme').forEach(el=>el.checked=true);
+}
+document.querySelectorAll('.color-scheme').forEach(el=>{
+  el.addEventListener('change',_=>{
+    if(el.checked){
+      localStorage.setItem('color-scheme',window.matchMedia('(prefers-color-scheme: light)').matches?'dark':'light');
+    }else{
+      localStorage.removeItem('color-scheme');
+    }
+  });
+});
+</script>
+</body>
+</html>
