@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>programingjd</title>
-<meta name="theme-color" content="#661723">
+<meta name="theme-color" content="#d42">
 <meta name="description" content="programingjd profile"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
@@ -13,75 +13,179 @@
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="https://about.programingjd.me">
 <style>
-:root{
-  --fg:#ccc;--bg:#222;--adj:0;--link:#3ce;--accent:#d42;
-  --bg:light-dark()
+html{
+  --foreground-color:light-dark(#333,#ccc);
+  --background-color:light-dark(#eee,#222);
+  --link-color:#3ce;--accent-color:#d42;
+  --font-weight-adjustment:0;
   color-scheme:dark light only;
-  accent-color:var(--accent);
+  accent-color:var(--accent-color);
+  width:100%;height:100%;
+  font:calc(400 + var(--font-weight-adjustment)) clamp(12pt, 2vmin + 1vmax, 24pt) sans-serif;
+  background:var(--background-color);
+  color:var(--foreground-color);
 }
-@media(prefers-color-scheme:light){:root{--fg:#333;--bg:#eee;--adj:100}}
-*{margin:0;padding:0;box-sizing:border-box}
-html{width:100%;height:100%;font:clamp(12pt, 2vmin + 1vmax, 24pt) sans-serif;background:var(--bg);color:var(--fg)}
-body{min-height:100%;padding:4rem 2rem;display:grid;grid-template-rows:1fr 12ch;gap:6ch;place-content:center}
-body>section:first-child{display:grid;place-content:center}
-body>section:last-of-type{display:grid;gap:1ch;
-  grid-template:
-  "a b" 5ch
-  "a c" 5ch / 12ch 1fr
+:is(*){margin:0;padding:0;box-sizing:border-box}
+a{color:inherit}
+a:hover{color:var(--link-color)}
+body{
+  min-height:100%;padding:4rem 2rem;
+  display:grid;grid-template-rows:1fr 12ch;gap:6ch;place-content:center;
+  main{
+    display:grid;place-content:center;
+    section{
+      font-weight:calc(200 + var(--font-weight-adjustment));
+      counter-reset:dd;
+      &>span{font-weight:700;font-stretch:100%}
+    }
+    div[role="term"],section{padding:.5em 1rem}
+    div[role="term"]{font:900 1.5em 'merriweather';font-stretch:112%}
+    .phonetic{font:calc(500 + var(--font-weight-adjustment)) 1em 'ebgaramond',serif}
+    .classification{font:calc(700  + var(--font-weight-adjustment)) 1em 'merriweather';font-stretch:112%}
+    .variants{font:calc(300 + var(--font-weight-adjustment)) .85em 'merriweather-ital';font-stretch:112%}
+    div[role="definition"]{
+      position:relative;counter-increment:dd;padding:.5em 0 .5em 1.5rem;
+      font:500 .85em 'merriweather';font-stretch:112%;
+      &:before{content:counter(dd) ".";position:absolute;left:0}
+      &:first-child{font-size:1.15em}
+    }
+  }
+  footer{
+    display:grid;gap:1ch;
+    grid-template:
+      "a b" 5ch
+      "a c" 5ch / 12ch 1fr;
+    picture,img{
+      grid-area:a;
+      width:auto;height:100%;aspect-ratio:1;
+    }
+    img{
+      box-sizing:content-box;
+      border:2px solid var(--foreground-color);border-radius:1ch;
+    }
+    h1{
+      font:900 1.5em 'merriweather';font-stretch:112%;
+      grid-area:b;
+      padding:.5rem .25rem;
+      color:var(--accent-color);
+    }
+    svg{
+      grid-area:c;
+      height:4ch;width:auto;max-width:20vw;
+      path{color:inherit;fill:currentColor}
+    }
+  }
+  header{
+    position:absolute;
+    top:0;left:0;right:0;
+    display:grid;
+    justify-content:end;
+    div{
+      display:grid;
+      place-items:center;
+      &:hover{color:var(--link-color)}
+      input.color-scheme{
+        position:absolute;
+        inset:0;
+        appearance:none;margin:0;padding:0;
+        cursor:pointer;
+        &~svg{
+          display:none;
+          padding:.5em;
+          width:2em;height:2em;
+          path{fill:currentColor}
+        }
+      }
+    }
+  }
 }
 .custom-font{position:relative}
-.custom-font:after{pointer-events:none;position:absolute;content:'';inset:0;background:var(--bg);opacity:1;transition:opacity 600ms ease-in}
-/*.custom-font{opacity:0;transition:opacity 600ms ease-in}*/
-@media(prefers-reduced-motion:reduce){.custom-font{transition-duration:0ms}}
-div[role="term"],section{padding:.5em 1rem}
-div[role="term"],h1{font:900 1.5em 'merriweather';font-stretch:112%}
-.phonetic{font:500 1em 'ebgaramond',serif}
-.classification{font:700 1em 'merriweather';font-stretch:112%}
-.variants{font:calc(300 + var(--adj)) .85em 'merriweather-ital';font-stretch:112%}
-div[role="definition"]{font:500 1em 'merriweather';font-stretch:112%}
-section>span{font-weight:700;font-stretch:100%}
-section{font-weight:calc(200 + var(--adj));counter-reset:dd}
-div[role="definition"]{position:relative;counter-increment:dd;padding:.5em 0 .5em 1.5rem}
-div[role="definition"]:before{content:counter(dd) ".";position:absolute;left:0}
-div[role="definition"]:first-child{font-size:1.15em}
-div[role="definition"]:not(:first-child){font-size:.85em}
-picture,img{width:auto;height:100%;aspect-ratio:1;background:rgba(127,127,127,0.25);grid-area:a}
-img{border:2px solid var(--fg);box-sizing:content-box;border-radius:1ch}
-h1{grid-area:b;padding:.5rem .25rem;color:var(--accent)}
-svg{height:4ch;width:auto;max-width:20vw}
-svg{grid-area:c}
-svg path{color:inherit;fill:currentColor}
-a{color:inherit}
-a:hover{color:var(--link)}
+.custom-font::after{
+  content:'';
+  pointer-events:none;
+  position:absolute;
+  inset:0;
+  background:var(--background-color);
+  opacity:1;
+}
+@media(prefers-color-scheme:light){
+  :root{
+    color-scheme:light only;
+    --font-weight-adjustment:100;
+    &:has(header input:checked){
+      color-scheme:dark only;
+      --font-weight-adjustment:0;
+    }
+    header input.color-scheme{
+      &~svg.light{display:block}
+      &~svg.dark{display:none}
+      &:checked{
+        &~svg.light{display:none}
+        &~svg.dark{display:block}
+      }
+    }
+  }
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    color-scheme:dark only;
+    --font-weight-adjustment:0;
+    &:has(header input:checked){
+      color-scheme:light only;
+      --font-weight-adjustment:100;
+    }
+    header input.color-scheme{
+      &~svg.light{display:none}
+      &~svg.dark{display:block}
+      &:checked{
+        &~svg.light{display:block}
+        &~svg.dark{display:none}
+      }
+    }
+  }
+}
+@media not (prefers-reduced-motion:reduce){
+  body.custom-font:after{transition:opacity 600ms ease-in}
+}
+/*img{border:2px solid var(--fg);box-sizing:content-box;border-radius:1ch}*/
 </style>
 <noscript><link rel="stylesheet" href="/style.css"></noscript>
 </head>
 <body class="custom-font">
-<section>
-<div>
-<div role="term">progra(m)ming</div>
-<section class="phonetic">/ˈprəʊɡræmɪŋ/</section>
-<section class="classification">noun</section>
-<section class="variants"><span>variants: </span>programming or less commonly programing</section>
-<section class="definitions">
-  <div role="definition">the act or job of creating computer programs</div>
-  <div role="definition">a schedule of television or radio broadcasts</div>
-</section>
-</div>
-</section>
-<section>
-<picture>
-  <source srcset="/profile_muted_256.webp 256w, /profile_muted_128.webp 128w" sizes="(max-width:400px) 128px,(max-width:1080px) 256px,512px" type="image/webp">
-  <source srcset="/profile_muted_256.jpg 256w, /profile_muted_128.jpg 128w" sizes="(max-width:400px) 128px,(max-width:1080px) 256px,512px" type="image/jpeg">
-  <img src="data:," alt="muted profile picture">
-</picture>
-<div><h1>programingjd</h1>
-<a href="https://github.com/programingjd" aria-label="github">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 291">
-  <path d="M132 195c-29-3-49-24-49-51q0-18 10-31c-3-7-2-22 1-29q15 0 27 10 13-3 28-4 16 1 28 4c6-6 18-11 27-10 3 6 4 22 1 29q11 13 11 31c0 27-21 47-50 51q11 8 12 27v23q2 11 12 8c40-15 71-55 71-104a112 112 0 1 0-224 0c0 49 31 89 72 104q11 2 12-8v-17l-10 2q-21 0-30-23-3-8-10-10-3 0-3-2 1-5 9-5t17 12q6 10 15 9 7 0 14-7zM468 226V113h32v113zm94 0q-30 0-29-28v-59h-20v-26h20V90l32-7v30h23v26h-23v52q0 9 9 9h14v26zm223 2q-38 0-38-39v-76h32v68q0 21 18 22c14 0 24-13 24-30v-60h32v113h-32v-19q-10 20-36 21m154 0q-25-1-37-21v19h-32V68h32v65c7-13 22-23 37-23q47 1 46 59 0 58-46 59m-12-27q26-1 25-32 1-31-25-32c-13 0-24 13-25 31v1c1 19 12 32 25 32M697 68v64h-61V68h-34v158h34v-63h61v63h34V68zM381 229c-47 0-77-32-77-82 0-51 31-82 78-82q59 1 70 44l-35 8q-6-23-35-23-41 0-42 53 0 52 41 53 40-1 41-41v-7l8 13h-51v-29h77v18c0 48-28 75-75 75m103-127q18-1 19-19-1-18-19-19c-10 0-19 8-19 19s9 19 19 19"/>
-</svg>
-</a></div>
-</section>
+<header>
+  <div>
+    <input class="color-scheme" type="checkbox" title="Toggle Light/Dark Mode">
+    <svg class="light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M136 16q-1-7-8-8-7 1-8 8v32h16zM54 43l23 23-11 11-23-23a8 8 0 0 1 11-11m-6 77H16q-7 1-8 8 1 7 8 8h32zm-5 82 23-23 11 11-23 23a8 8 0 1 1-11-11m77 6v32q1 7 8 8 7-1 8-8v-32zm82 5-23-23 11-11 23 23a8 8 0 1 1-11 11m6-77h32q7-1 8-8-1-7-8-8h-32zm5-82-23 23-11-11 23-23a8 8 0 1 1 11 11M192 128c0 35-29 64-64 64s-64-29-64-64 29-64 64-64 64 29 64 64"></path></svg>
+    <svg class="dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M184 160q22 0 40-10l17-8-6 18A112 112 0 1 1 96 21l18-6-8 17Q96 51 96 72c0 49 39 88 88 88"></path></svg>
+  </div>
+</header>
+<main>
+  <div>
+    <div role="term">progra(m)ming</div>
+    <section class="phonetic">/ˈprəʊɡræmɪŋ/</section>
+    <section class="classification">noun</section>
+    <section class="variants"><span>variants: </span>programming or less commonly programing</section>
+    <section class="definitions">
+      <div role="definition">the act or job of creating computer programs</div>
+      <div role="definition">a schedule of television or radio broadcasts</div>
+    </section>
+  </div>
+</main>
+<footer>
+  <picture>
+    <source srcset="/profile_muted_256.webp 256w, /profile_muted_128.webp 128w" sizes="(max-width:400px) 128px,(max-width:1080px) 256px,512px" type="image/webp">
+    <source srcset="/profile_muted_256.jpg 256w, /profile_muted_128.jpg 128w" sizes="(max-width:400px) 128px,(max-width:1080px) 256px,512px" type="image/jpeg">
+    <img src="data:," alt="muted profile picture">
+  </picture>
+  <div>
+    <h1>programingjd</h1>
+    <a href="https://github.com/programingjd" aria-label="github">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 291">
+        <path d="M132 195c-29-3-49-24-49-51q0-18 10-31c-3-7-2-22 1-29q15 0 27 10 13-3 28-4 16 1 28 4c6-6 18-11 27-10 3 6 4 22 1 29q11 13 11 31c0 27-21 47-50 51q11 8 12 27v23q2 11 12 8c40-15 71-55 71-104a112 112 0 1 0-224 0c0 49 31 89 72 104q11 2 12-8v-17l-10 2q-21 0-30-23-3-8-10-10-3 0-3-2 1-5 9-5t17 12q6 10 15 9 7 0 14-7zM468 226V113h32v113zm94 0q-30 0-29-28v-59h-20v-26h20V90l32-7v30h23v26h-23v52q0 9 9 9h14v26zm223 2q-38 0-38-39v-76h32v68q0 21 18 22c14 0 24-13 24-30v-60h32v113h-32v-19q-10 20-36 21m154 0q-25-1-37-21v19h-32V68h32v65c7-13 22-23 37-23q47 1 46 59 0 58-46 59m-12-27q26-1 25-32 1-31-25-32c-13 0-24 13-25 31v1c1 19 12 32 25 32M697 68v64h-61V68h-34v158h34v-63h61v63h34V68zM381 229c-47 0-77-32-77-82 0-51 31-82 78-82q59 1 70 44l-35 8q-6-23-35-23-41 0-42 53 0 52 41 53 40-1 41-41v-7l8 13h-51v-29h77v18c0 48-28 75-75 75m103-127q18-1 19-19-1-18-19-19c-10 0-19 8-19 19s9 19 19 19"/>
+      </svg>
+    </a>
+  </div>
+</footer>
 <script type="application/ld+json">
 {
   "@id": "https://about.programingjd.me",
@@ -128,8 +232,9 @@ style.textContent=`
   ) format("woff2");
   font-weight:500;
 }
-.custom-font:after{opacity:0}
+.custom-font::after{opacity:0}
 `;
+await new Promise(r=>setTimeout(r,0));
 document.head.appendChild(style);
 </script>
 </body>
