@@ -3,7 +3,7 @@
   "short_name": "programingjd",
   "start_url": "/",
   "background_color": "#222",
-  "theme_color": "#661723",
+  "theme_color": "#d42",
   "description": "programingjd",
   "icons": [
     { "src": "/profile_512.webp", "sizes": "512x512", "type": "image/webp" },
