@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Resumé</title>
+<meta name="theme-color" content="#d42">
+<meta name="description" content="template description"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="favicon.ico" sizes="16x16">
+<link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://about.programingjd.me/resume">
+<link rel="stylesheet" href="/style.css">
+<style>
+html{
+  --foreground-color:light-dark(#333,#ccc);
+  --background-color:light-dark(#eee,#222);
+  --link-color:#3ce;--accent-color:#d42;
+  --font-weight-adjustment:0;
+  color-scheme:dark light only;
+  accent-color:var(--accent-color);
+  width:100%;height:100%;
+  font:calc(400 + var(--font-weight-adjustment)) clamp(12pt, 2vmin + 1vmax, 24pt)/1.35 sans-serif;
+  background:var(--background-color);
+  color:var(--foreground-color);
+}
+:where(*){margin:0;padding:0;box-sizing:border-box}
+.custom-font{position:relative}
+:where(.custom-font)::after{
+  content:'';
+  pointer-events:none;
+  position:absolute;
+  inset:0;
+  background:var(--background-color);
+  opacity:1;
+}
+@media not (prefers-reduced-motion:reduce){
+  .custom-font:after{transition:opacity 600ms ease-in}
+}
+body{
+  min-height:100%;padding:4rem 2rem;
+  display:grid;grid-template-rows:1fr;gap:1em;place-content:center;
+}
+a{color:inherit}
+a:hover{color:var(--link-color)}
+header{
+  position:absolute;
+  top:0;left:0;right:0;
+  display:grid;
+  justify-content:end;
+  div{
+    display:grid;
+    place-items:center;
+    &:hover{color:var(--link-color)}
+    input.color-scheme{
+      position:absolute;
+      inset:0;
+      appearance:none;margin:0;padding:0;
+      cursor:pointer;
+      &~svg{
+        display:none;
+        padding:.5em;
+        width:2em;height:2em;
+        path{fill:currentColor}
+      }
+    }
+  }
+}
+main{
+  display:grid;
+  place-items:center;
+  gap:1em;
+  p{
+    max-width:50ch;
+    font:calc(300 + var(--font-weight-adjustment,0)) 1em __roboto-slab__;font-stretch:110%;
+  }
+}
+@media(prefers-color-scheme:light){
+  :root{
+    color-scheme:light only;
+    --font-weight-adjustment:100;
+    &:has(header input:checked){
+      color-scheme:dark only;
+      --font-weight-adjustment:0;
+    }
+    header input.color-scheme{
+      &~svg.light{display:block}
+      &~svg.dark{display:none}
+      &:checked{
+        &~svg.light{display:none}
+        &~svg.dark{display:block}
+      }
+    }
+  }
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    color-scheme:dark only;
+    --font-weight-adjustment:0;
+    &:has(header input:checked){
+      color-scheme:light only;
+      --font-weight-adjustment:100;
+    }
+    header input.color-scheme{
+      &~svg.light{display:none}
+      &~svg.dark{display:block}
+      &:checked{
+        &~svg.light{display:block}
+        &~svg.dark{display:none}
+      }
+    }
+  }
+}
+</style>
+</head>
+<body class="custom-font">
+<header>
+  <div>
+    <input class="color-scheme" type="checkbox" title="Toggle Light/Dark Mode">
+    <svg class="light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M136 16q-1-7-8-8-7 1-8 8v32h16zM54 43l23 23-11 11-23-23a8 8 0 0 1 11-11m-6 77H16q-7 1-8 8 1 7 8 8h32zm-5 82 23-23 11 11-23 23a8 8 0 1 1-11-11m77 6v32q1 7 8 8 7-1 8-8v-32zm82 5-23-23 11-11 23 23a8 8 0 1 1-11 11m6-77h32q7-1 8-8-1-7-8-8h-32zm5-82-23 23-11-11 23-23a8 8 0 1 1 11 11M192 128c0 35-29 64-64 64s-64-29-64-64 29-64 64-64 64 29 64 64"></path></svg>
+    <svg class="dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M184 160q22 0 40-10l17-8-6 18A112 112 0 1 1 96 21l18-6-8 17Q96 51 96 72c0 49 39 88 88 88"></path></svg>
+  </div>
+</header>
+<main>
+<p>I have many interests, but my life has been shaped by two early passions: rock climbing and computer programming. Following these interests has fueled a constant drive to learn and improve. When your passion runs that deep, you naturally want to share it and give back. I've been volunteering as a climbing coach and route setter since early on, teaching safety and movement to all levels. I bring that same passion to my professional life as a software engineer: constantly exchanging knowledge, excitement and insights with my colleagues. I also open source all my personal projects so others can benefit from my work.
+<p>My professional path has been a consequence of my passions. Since I was already coding, I chose a rigorous general science and engineering track rather than a computer science degree. I wanted the strong foundations in math and physics required for applied science, where software is a tool used to solve challenging problems. As a climber, I was naturally drawn to geology. This led me to the "École Nationale Supérieure de Géologie", from which I graduated with a specialization in Oil & Gas R&D. During my final year, I had the opportunity to work under Prof. Mallet on the development of the GOCAD modeling software (C++) at the research lab. I focused on the implementation of his DSI algorithm for the constrained smoothing of meshed layer boundaries and faults.
+<p>That work on GOCAD landed me a position at Landmark Graphics (Halliburton) in Houston, TX, where most of the Oil & Gas software R&D is done. This was my top pick because Landmark was developing the leading software used by most of the giants in the industry. I spent 12 years there (and acquired dual citizenship), initially working on integrating GOCAD functionality to their software suite (Java), but quickly transitioned to other critical parts of their DecisionSpace suite. I was part of a small team building the DecisionSpace Uncertainty Management software from the ground up. The system allowed users to assign uncertainty to a wide range of geological and reservoir parameters, then used stochastic simulations to measure their impact on reservoir performance and production forecasts. We added ML‑based history matching to validate the reservoir model, narrow parameter ranges, and refine predictions. The resulting model could also be used to optimize well strategies, pipeline routing, and overall field development.
+<p>I eventually returned to my home town in France for family reasons. I spent a year independently developing an Android File Manager with optional root functionality, as I was not satisfied with the ones that were available. I wrote specialized versions of the core primitives in C (su, ls, cat, stat, mv, cp, etc.) to handle root-level filesystem operations and built a complex double-paned UI. I was a very early adopter of Kotlin (years before 1.0), and used this project to validate its readiness for Android development.
+<p>Once that was done, I joined Raccourci, a leader in the French tourism sector, as their sole Android developer. I architected a technical foundation to build and maintain hundreds of unique regional app variants. The modular and offline-first architecture enabled shared functionality (augmented reality, BLE beacon discovery, custom maps, etc.), while remaining flexible enough for destination-specific extensions and features.
+<p>With the mobile apps stable and mature, I shifted to the backend to address the architectural limitations in the Elasticsearch faceting engine. To handle the increasing scale of the data, I progressively re-engineered the existing solution, taking advantage of Elasticsearch extensibility to add specialized logic through plugins. These improvements allowed us to extend its use on Raccourci's many destination websites, including high profile and high traffic sites.
+<p>I then used this new faceting system to start a new R&D project for online reputation analysis, both at the micro level (individual locations representing specific customers) and macro level (a touristic destination or a whole region). This required implementing the faceting solution for a new domain and extending it to support customizable dashboards aggregating a full range of metrics. The project also required solving the challenges of large-scale data ingestion. I had to manage high volume of data and orchestration, and develop cost-effective solutions to sidestep fingerprinting and other common blocking techniques. I took total ownership of the entire backend for this project and brought it to production. It has since become a major source of revenue, funding R&D for new projects.
+<p>Another significant project that I built single-handedly is a complete map solution that covers the whole planet, to replace Google Maps or Mapbox for all the apps and websites produced by the company. The focus was on optimizing the cost and performance by rebuilding the full stack.<br>
+The first step was to create optimized vector tiles with elevation data from public datasets: OpenStreetMap weekly moderated planetary exports, and the latest ASTER GDEM V3 TIFFs.<br>
+The second step was the most critical for managing costs: a highly optimized tile server. The tiles are converted to an optimized structure in memory with high compression and caching that leverages the specific redundancy of tile layers.<br>
+The third and final step was to optimize the drawing of those tiles and create a high-level web component with a friendly API to display and customize the map. Handling the large number of map markers necessary for some of our use cases required implementing a specialized clustering algorithm in WebAssembly.<br>
+This solution is now in production, handling over 100 million map views per month on a single server (with a second server for redundancy). Despite the volume, its CPU usage is minimal and RAM usage stays under 64GB.
+<p>Soon after joining Raccourci, I realized that I wanted more time to explore and experiment. While I was already spending much of my free time on personal projects, I decided to move to a 4-day work week to dive deeper into the technologies that interested me.
+I dedicate that extra time to technical exploration, with the goal of creating useful open‑source libraries rather than superficial prototypes. My interests often lie beyond my immediate professional scope, like the evolution of everything related to the web. HTML, CSS, Javascript, WASM, HTTP, TLS, DNS, notifications, passkeys, etc. I am particularly focused on performance, security, and privacy, areas that are often not prioritized enough in professional projects. The libraries I build from these explorations are openly shared and frequently end up being reused in my professional work as well.
+</main>
+<script type="module">
+const colorSchemeOverride=localStorage.getItem('color-scheme');
+if(colorSchemeOverride&&!window.matchMedia(`(prefers-color-scheme: ${colorSchemeOverride})`).matches){
+  document.querySelectorAll('.color-scheme').forEach(el=>el.checked=true);
+}
+document.querySelectorAll('.color-scheme').forEach(el=>{
+  el.addEventListener('change',_=>{
+    if(el.checked){
+      localStorage.setItem('color-scheme',window.matchMedia('(prefers-color-scheme: light)').matches?'dark':'light');
+    }else{
+      localStorage.removeItem('color-scheme');
+    }
+  });
+});
+</script>
+<style>
+@font-face {
+    font-family: '__roboto-slab__';
+    src: url(/roboto-slab-full.woff2) format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+}
+</style>
+</body>
+</html>
