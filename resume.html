@@ -21,9 +21,10 @@ html{
   color-scheme:dark light only;
   accent-color:var(--accent-color);
   width:100%;height:100%;
-  font:calc(400 + var(--font-weight-adjustment)) clamp(12pt, 2vmin + 1vmax, 24pt)/1.35 sans-serif;
+  font:calc(400 + var(--font-weight-adjustment)) clamp(10pt, 6pt + .8vmin + .35vmax, 24pt)/1.35 sans-serif;
   background:var(--background-color);
   color:var(--foreground-color);
+  scroll-behavior:smooth;
 }
 :where(*){margin:0;padding:0;box-sizing:border-box}
 .custom-font{position:relative}
@@ -39,7 +40,7 @@ html{
   .custom-font:after{transition:opacity 600ms ease-in}
 }
 body{
-  min-height:100%;padding:4rem 2rem;
+  min-height:100%;
   display:grid;grid-template-rows:1fr;gap:1em;place-content:center;
 }
 a{color:inherit}
@@ -70,10 +71,32 @@ header{
 main{
   display:grid;
   place-items:center;
-  gap:1em;
-  p{
-    max-width:50ch;
-    font:calc(300 + var(--font-weight-adjustment,0)) 1em __roboto-slab__;font-stretch:110%;
+  grid-auto-rows:auto;
+  gap:2em;
+  section{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    min-height:100dvh;
+    padding:2rem;
+    max-width:60ch;
+    font:calc(300 + var(--font-weight-adjustment,0)) 1em __roboto-slab__;font-stretch:100%;
+    letter-spacing:-.01em;
+    line-height:calc(1.25em + 1vh);
+    text-wrap:balance;
+    p{
+      display:grid;
+      place-items:center;
+      padding:.5em 0;
+      flex:1 1 auto;
+    }
+    a:first-child,a:last-child{
+      flex:3 3 auto;
+      display:grid;
+      place-items:center;
+      padding:1em;
+      svg{width:2em;height:2em}
+    }
   }
 }
 @media(prefers-color-scheme:light){
@@ -123,21 +146,182 @@ main{
   </div>
 </header>
 <main>
-<p>I have many interests, but my life has been shaped by two early passions: rock climbing and computer programming. Following these interests has fueled a constant drive to learn and improve. When your passion runs that deep, you naturally want to share it and give back. I've been volunteering as a climbing coach and route setter since early on, teaching safety and movement to all levels. I bring that same passion to my professional life as a software engineer: constantly exchanging knowledge, excitement and insights with my colleagues. I also open source all my personal projects so others can benefit from my work.
-<p>My professional path has been a consequence of my passions. Since I was already coding, I chose a rigorous general science and engineering track rather than a computer science degree. I wanted the strong foundations in math and physics required for applied science, where software is a tool used to solve challenging problems. As a climber, I was naturally drawn to geology. This led me to the "École Nationale Supérieure de Géologie", from which I graduated with a specialization in Oil & Gas R&D. During my final year, I had the opportunity to work under Prof. Mallet on the development of the GOCAD modeling software (C++) at the research lab. I focused on the implementation of his DSI algorithm for the constrained smoothing of meshed layer boundaries and faults.
-<p>That work on GOCAD landed me a position at Landmark Graphics (Halliburton) in Houston, TX, where most of the Oil & Gas software R&D is done. This was my top pick because Landmark was developing the leading software used by most of the giants in the industry. I spent 12 years there (and acquired dual citizenship), initially working on integrating GOCAD functionality to their software suite (Java), but quickly transitioned to other critical parts of their DecisionSpace suite. I was part of a small team building the DecisionSpace Uncertainty Management software from the ground up. The system allowed users to assign uncertainty to a wide range of geological and reservoir parameters, then used stochastic simulations to measure their impact on reservoir performance and production forecasts. We added ML‑based history matching to validate the reservoir model, narrow parameter ranges, and refine predictions. The resulting model could also be used to optimize well strategies, pipeline routing, and overall field development.
-<p>I eventually returned to my home town in France for family reasons. I spent a year independently developing an Android File Manager with optional root functionality, as I was not satisfied with the ones that were available. I wrote specialized versions of the core primitives in C (su, ls, cat, stat, mv, cp, etc.) to handle root-level filesystem operations and built a complex double-paned UI. I was a very early adopter of Kotlin (years before 1.0), and used this project to validate its readiness for Android development.
-<p>Once that was done, I joined Raccourci, a leader in the French tourism sector, as their sole Android developer. I architected a technical foundation to build and maintain hundreds of unique regional app variants. The modular and offline-first architecture enabled shared functionality (augmented reality, BLE beacon discovery, custom maps, etc.), while remaining flexible enough for destination-specific extensions and features.
-<p>With the mobile apps stable and mature, I shifted to the backend to address the architectural limitations in the Elasticsearch faceting engine. To handle the increasing scale of the data, I progressively re-engineered the existing solution, taking advantage of Elasticsearch extensibility to add specialized logic through plugins. These improvements allowed us to extend its use on Raccourci's many destination websites, including high profile and high traffic sites.
-<p>I then used this new faceting system to start a new R&D project for online reputation analysis, both at the micro level (individual locations representing specific customers) and macro level (a touristic destination or a whole region). This required implementing the faceting solution for a new domain and extending it to support customizable dashboards aggregating a full range of metrics. The project also required solving the challenges of large-scale data ingestion. I had to manage high volume of data and orchestration, and develop cost-effective solutions to sidestep fingerprinting and other common blocking techniques. I took total ownership of the entire backend for this project and brought it to production. It has since become a major source of revenue, funding R&D for new projects.
-<p>Another significant project that I built single-handedly is a complete map solution that covers the whole planet, to replace Google Maps or Mapbox for all the apps and websites produced by the company. The focus was on optimizing the cost and performance by rebuilding the full stack.<br>
-The first step was to create optimized vector tiles with elevation data from public datasets: OpenStreetMap weekly moderated planetary exports, and the latest ASTER GDEM V3 TIFFs.<br>
-The second step was the most critical for managing costs: a highly optimized tile server. The tiles are converted to an optimized structure in memory with high compression and caching that leverages the specific redundancy of tile layers.<br>
-The third and final step was to optimize the drawing of those tiles and create a high-level web component with a friendly API to display and customize the map. Handling the large number of map markers necessary for some of our use cases required implementing a specialized clustering algorithm in WebAssembly.<br>
-This solution is now in production, handling over 100 million map views per month on a single server (with a second server for redundancy). Despite the volume, its CPU usage is minimal and RAM usage stays under 64GB.
-<p>Soon after joining Raccourci, I realized that I wanted more time to explore and experiment. While I was already spending much of my free time on personal projects, I decided to move to a 4-day work week to dive deeper into the technologies that interested me.
-I dedicate that extra time to technical exploration, with the goal of creating useful open‑source libraries rather than superficial prototypes. My interests often lie beyond my immediate professional scope, like the evolution of everything related to the web. HTML, CSS, Javascript, WASM, HTTP, TLS, DNS, notifications, passkeys, etc. I am particularly focused on performance, security, and privacy, areas that are often not prioritized enough in professional projects. The libraries I build from these explorations are openly shared and frequently end up being reused in my professional work as well.
+<section id="intro">
+  <a href="#intro"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <use href="#prev"/>
+  </svg></a>
+  <p>I have many interests, but my life has been shaped by two early passions:
+  rock climbing and computer programming.</p>
+  <p>Following these interests has fueled a constant drive to learn and improve.
+  When your passion runs that deep, you naturally want to share it and give back.</p>
+  <p>I've been volunteering as a climbing coach and route setter since early on,
+  teaching safety and movement to all levels.</p>
+  <p>I bring that same passion to my professional life as a software engineer:
+  constantly exchanging knowledge, excitement and insights with my colleagues.</p>
+  <p>I also open source all my personal projects so others can benefit from my work.</p>
+  <a href="#school"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <use href="#next"/>
+  </svg></a>
+</section>
+<section id="school">
+  <a href="#intro"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <use href="#prev"/>
+  </svg></a>
+  <p>My professional path has been a consequence of my passions.</p>
+  <p>Since I was already coding, I chose a rigorous general science and engineering track
+  rather than a computer science degree.
+  I wanted the strong foundations in math and physics required for applied science,
+  where software is a tool used to solve challenging problems.</p>
+  <p>As a climber, I was naturally drawn to geology.
+  This led me to the "École&nbsp;Nationale&nbsp;Supérieure&nbsp;de&nbsp;Géologie",
+  from which I graduated with a specialization in Oil & Gas R&D.</p>
+  <p>During my final year, I had the opportunity to work under Prof.&nbsp;Mallet
+  on the development of the GOCAD modeling software (C++) at the research lab.
+  I focused on the implementation of his DSI algorithm for the constrained smoothing
+  of meshed layer boundaries and faults.</p>
+  <a href="#houston"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <use href="#next"/>
+  </svg></a>
+</section>
+<section id="houston">
+  <a href="#school"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <use href="#prev"/>
+  </svg></a>
+  <p>That work on GOCAD landed me a position at Landmark Graphics (Halliburton)
+  in Houston, TX, where most of the Oil & Gas software R&D is done.
+  This was my top pick because Landmark was developing the leading software
+  used by most of the giants in the industry.</p>
+  <p>I spent 12 years there,
+  initially working on integrating GOCAD functionality to their software suite,
+  but quickly transitioned to other critical parts of their DecisionSpace suite.</p>
+  <p>I was part of a small team building the DecisionSpace Uncertainty Management solution
+  from the ground up.
+  Users assigned uncertainty to geological and reservoir parameters,
+  then stochastic simulations were used to measure their impact on reservoir performance
+  and production forecasts.
+  ML‑based history matching enabled the validation of the reservoir model and better predictions.
+  The resulting model was used to optimize well strategies, pipeline routing
+  and overall field development.</p>
+  <a href="#uncopt"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <use href="#next"/>
+  </svg></a>
+</section>
+<section id="uncopt">
+  <a href="#houston"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <use href="#prev"/>
+  </svg></a>
+  <p>I eventually returned to my hometown in France for family reasons.</p>
+  <p>I spent a year independently developing an Android File Manager with optional root functionality,
+  as I was not satisfied with the ones that were available.</p>
+  <p>I wrote specialized versions of the core primitives in C (su, ls, cat, stat, mv, cp, etc.)
+  to handle root-level filesystem operations that the Android SDK doesn't allow.</p>
+  <p>For the UI, I built a resizable and collapsible double-paned interface to facilitate
+  copying and moving files back and forth.</p>
+  <p>Finally, I added a plugin system where other apps could add virtual file systems with authentication.
+  I used that plugin system to add access to network shares, sftp servers
+  and common cloud storage services like Google Drive and Dropbox.</p>
+  <a href="#mobitour"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <use href="#next"/>
+  </svg></a>
+</section>
+<section id="mobitour">
+  <a href="#uncopt"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <use href="#prev"/>
+  </svg></a>
+  <p>Once that was done, I joined Raccourci, a leader in the French tourism sector,
+  as their sole Android developer.</p>
+  <p>I architected a technical foundation to build and maintain hundreds of unique regional app variants.
+  The modular and offline-first architecture enabled shared functionality
+  while remaining flexible enough for destination-specific extensions and features.</p>
+  <p>Those shared functionalities included an augmented reality view, BLE beacon discovery, custom maps,
+  background downloads of map and data bundles for offline use, multi-stage itineraries,
+  text and audio reviews, gps-triggered text and audio content.</p>
+  <a href="#elastic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <use href="#next"/>
+  </svg></a>
+</section>
+<section id="elastic">
+  <a href="#mobitour"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <use href="#prev"/>
+  </svg></a>
+  <p>With the mobile apps stable and mature, I shifted to the backend to address
+  the architectural limitations in the Elasticsearch faceting engine.</p>
+  <p>To handle the increasing scale of the data, I progressively re-engineered the existing solution,
+  taking advantage of Elasticsearch extensibility to add specialized logic through plugins.</p>
+  <p>These improvements allowed us to extend its use on Raccourci's many destination websites,
+  including high-profile and high-traffic sites.</p>
+  <a href="#fairguest"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <use href="#next"/>
+  </svg></a>
+</section>
+<section id="fairguest">
+  <a href="#elastic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <use href="#prev"/>
+  </svg></a>
+  <p>I then used this new faceting system to start a new R&D project for online reputation analysis,
+  both at the micro level (individual locations representing specific customers)
+  and macro level (a touristic destination or a whole region).</p>
+  <p>This required implementing the faceting solution for a new domain and extending it
+  to support customizable dashboards aggregating a full range of metrics.</p>
+  <p>The project also required solving the challenges of large-scale data ingestion.
+  I had to manage the high volume of data and its orchestration and develop
+  cost-effective solutions to sidestep fingerprinting and other common blocking techniques.</p>
+  <p>I took total ownership of the entire backend for this project and brought it to production.
+  It has since become a major source of revenue, funding R&D for new projects.</p>
+  <a href="#tmaps"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <use href="#next"/>
+  </svg></a>
+</section>
+<section id="tmaps">
+  <a href="#fairguest"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <use href="#prev"/>
+  </svg></a>
+  <p>Another significant project that I built single-handedly is a complete map solution that covers
+  the whole planet, to replace Google Maps or Mapbox for all the apps and websites produced by the company.</p>
+  <p>This started with the creation of optimized 3D vector tiles from public datasets:
+  OpenStreetMap data and ASTER GDEM V3 TIFFs.</p>
+  <p>A drastic server cost reduction came from optimizing the memory layout and using a cache
+  that leverages the specific redundancy of tile layers.</p>
+  <p>For the front end, a specialized MapLibre fork bundled as a web component yielded better performance
+  and a clean API for map customization.
+  Marker clustering performance and spatial distribution were improved with a new WebAssembly implementation.
+  <p>A single server handles all the production load (over 100 million map views per month)
+  with minimal CPU usage and less than 64GB of RAM.</p>
+  <a href="#projects"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <use href="#next"/>
+  </svg></a>
+</section>
+<section id="projects">
+  <a href="#tmaps"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <use href="#prev"/>
+  </svg></a>
+  <p>Soon after joining Raccourci, I realized that I wanted more time to explore and experiment.
+  While I was already spending much of my free time on personal projects,
+  I asked to move to a 4-day work week to dive deeper into the technologies that interested me.</p>
+  <p>I dedicate that extra time to technical exploration,
+  with the goal of creating useful open‑source libraries rather than superficial prototypes.</p>
+  <p>My interests often lie beyond my immediate professional scope,
+  like the evolution of everything related to the web.
+  HTML, CSS, Javascript, WASM, HTTP, TLS, DNS, notifications, passkeys, etc.
+  I am particularly focused on performance, security, and privacy,
+  areas that are often not prioritized enough in professional projects.</p>
+  <p>The libraries I build from these explorations are openly shared
+  and frequently end up being reused in my professional work as well.</p>
+  <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <use href="#next"/>
+  </svg></a>
+</section>
 </main>
+<svg id="symbols" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="next" viewBox="0 0 16 16">
+      <path stroke="currentColor" fill="none" d="M11.5 6.25L8 9.75L4.5 6.25"/>
+    </symbol>
+    <symbol id="prev" viewBox="0 0 16 16">
+      <use href="#next" transform="rotate(180 8 8)"/>
+    </symbol>
+  </defs>
+</svg>
 <script type="module">
 const colorSchemeOverride=localStorage.getItem('color-scheme');
 if(colorSchemeOverride&&!window.matchMedia(`(prefers-color-scheme: ${colorSchemeOverride})`).matches){
