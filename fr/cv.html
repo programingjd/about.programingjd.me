@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Resumé</title>
+<meta name="theme-color" content="#d42">
+<meta name="description" content="Le CV de Jerome"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="16x16">
+<link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://about.programingjd.me/en/resume">
+<link rel="alternate" href="https://about.programingjd.me/en/resume" hreflang="x-default">
+<link rel="alternate" href="https://about.programingjd.me/en/resume" hreflang="en">
+<link rel="alternate" href="https://about.programingjd.me/fr/cv" hreflang="fr">
+<link rel="stylesheet" href="/roboto-slab.css">
+<style>
+html{
+  --foreground-color:light-dark(#333,#ccc);
+  --background-color:light-dark(#eee,#222);
+  --link-color:#3ce;--accent-color:#d42;
+  --font-weight-adjustment:0;
+  color-scheme:dark light only;
+  accent-color:var(--accent-color);
+  width:100%;height:100%;
+  font:calc(400 + var(--font-weight-adjustment)) clamp(10pt, 6pt + .8vmin + .35vmax, 24pt)/1.35 sans-serif;
+  background:var(--background-color);
+  color:var(--foreground-color);
+  scroll-behavior:smooth;
+}
+:where(*){margin:0;padding:0;box-sizing:border-box}
+.custom-font{position:relative}
+:where(.custom-font)::after{
+  content:'';
+  pointer-events:none;
+  position:absolute;
+  inset:0;
+  background:var(--background-color);
+  opacity:1;
+}
+@media not (prefers-reduced-motion:reduce){
+  .custom-font:after{transition:opacity 600ms ease-in}
+}
+body{
+  min-height:100%;
+  display:grid;grid-template-rows:1fr;gap:1em;place-content:center;
+}
+a{color:inherit}
+a:hover{color:var(--link-color)}
+header{
+  position:absolute;
+  top:0;left:0;right:0;
+  padding:4px;
+  display:grid;
+  justify-content:end;
+  align-items:center;
+  grid-template-columns:repeat(2,min-content);
+  gap:1em;
+  a.language{
+    display:grid;
+    place-self:stretch;
+    place-items:center;
+    font-size:1.25em;
+    min-width:2.5em;
+    &:not(:hover){text-decoration:none}
+  }
+  div{
+    position:relative;
+    display:grid;
+    place-items:center;
+    &:hover{color:var(--link-color)}
+    input.color-scheme{
+      position:absolute;
+      inset:0;
+      appearance:none;margin:0;padding:0;
+      cursor:pointer;
+      width:2em;
+      height:2em;
+      &~svg{
+        display:none;
+        padding:.5em;
+        width:2em;height:2em;
+        path{fill:currentColor}
+      }
+    }
+  }
+}
+main{
+  display:grid;
+  place-items:center;
+  grid-auto-rows:auto;
+  gap:2em;
+  section{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    min-height:100dvh;
+    padding:2rem;
+    max-width:60ch;
+    font:calc(300 + var(--font-weight-adjustment,0)) 1em __roboto-slab__;font-stretch:100%;
+    letter-spacing:-.01em;
+    line-height:calc(1.25em + 1vh);
+    text-wrap:balance;
+    p{
+      display:grid;
+      align-items:center;
+      padding:.5em 0;
+      flex:1 1 auto;
+    }
+    a:first-child,a:last-child{
+      flex:3 3 auto;
+      display:grid;
+      place-items:center;
+      padding:1em;
+      svg{width:2em;height:2em}
+    }
+  }
+}
+@media(prefers-color-scheme:light){
+  :root{
+    color-scheme:light only;
+    --font-weight-adjustment:100;
+    &:has(header input:checked){
+      color-scheme:dark only;
+      --font-weight-adjustment:0;
+    }
+    header input.color-scheme{
+      &~svg.light{display:block}
+      &~svg.dark{display:none}
+      &:checked{
+        &~svg.light{display:none}
+        &~svg.dark{display:block}
+      }
+    }
+  }
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    color-scheme:dark only;
+    --font-weight-adjustment:0;
+    &:has(header input:checked){
+      color-scheme:light only;
+      --font-weight-adjustment:100;
+    }
+    header input.color-scheme{
+      &~svg.light{display:none}
+      &~svg.dark{display:block}
+      &:checked{
+        &~svg.light{display:block}
+        &~svg.dark{display:none}
+      }
+    }
+  }
+}
+</style>
+</head>
+<body class="custom-font">
+<header>
+  <a class="language" role="button" href="/en/resume" aria-label="passer du français à l'anglais / switch from french to english">fr</a>
+  <div>
+    <input class="color-scheme" type="checkbox" title="Inverser le mode clair/sombre">
+    <svg class="light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M136 16q-1-7-8-8-7 1-8 8v32h16zM54 43l23 23-11 11-23-23a8 8 0 0 1 11-11m-6 77H16q-7 1-8 8 1 7 8 8h32zm-5 82 23-23 11 11-23 23a8 8 0 1 1-11-11m77 6v32q1 7 8 8 7-1 8-8v-32zm82 5-23-23 11-11 23 23a8 8 0 1 1-11 11m6-77h32q7-1 8-8-1-7-8-8h-32zm5-82-23 23-11-11 23-23a8 8 0 1 1 11 11M192 128c0 35-29 64-64 64s-64-29-64-64 29-64 64-64 64 29 64 64"></path></svg>
+    <svg class="dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M184 160q22 0 40-10l17-8-6 18A112 112 0 1 1 96 21l18-6-8 17Q96 51 96 72c0 49 39 88 88 88"></path></svg>
+  </div>
+</header>
+<main>
+  <section id="intro">
+    <a href="#intro"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <use href="#prev"/>
+    </svg></a>
+    <p></p>
+    <a href="#school"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <use href="#next"/>
+    </svg></a>
+  </section>
+  <section id="school">
+    <a href="#intro"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <use href="#prev"/>
+    </svg></a>
+    <p></p>
+    <a href="#houston"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <use href="#next"/>
+    </svg></a>
+  </section>
+  <section id="houston">
+    <a href="#school"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <use href="#prev"/>
+    </svg></a>
+    <p></p>
+    <a href="#uncopt"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <use href="#next"/>
+    </svg></a>
+  </section>
+  <section id="uncopt">
+    <a href="#houston"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <use href="#prev"/>
+    </svg></a>
+    <p></p>
+    <a href="#mobitour"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <use href="#next"/>
+    </svg></a>
+  </section>
+  <section id="mobitour">
+    <a href="#uncopt"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <use href="#prev"/>
+    </svg></a>
+    <p></p>
+    <a href="#elastic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <use href="#next"/>
+    </svg></a>
+  </section>
+  <section id="elastic">
+    <a href="#mobitour"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <use href="#prev"/>
+    </svg></a>
+    <p></p>
+    <a href="#fairguest"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <use href="#next"/>
+    </svg></a>
+  </section>
+  <section id="fairguest">
+    <a href="#elastic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <use href="#prev"/>
+    </svg></a>
+    <p></p>
+    <a href="#tmaps"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <use href="#next"/>
+    </svg></a>
+  </section>
+  <section id="tmaps">
+    <a href="#fairguest"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <use href="#prev"/>
+    </svg></a>
+    <p></p>
+    <a href="#projects"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <use href="#next"/>
+    </svg></a>
+  </section>
+  <section id="projects">
+    <a href="#tmaps"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <use href="#prev"/>
+    </svg></a>
+    <p></p>
+    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <use href="#next"/>
+    </svg></a>
+  </section>
+</main>
+<svg id="symbols" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="next" viewBox="0 0 16 16">
+      <path stroke="currentColor" fill="none" d="M11.5 6.25L8 9.75L4.5 6.25"/>
+    </symbol>
+    <symbol id="prev" viewBox="0 0 16 16">
+      <use href="#next" transform="rotate(180 8 8)"/>
+    </symbol>
+  </defs>
+</svg>
+<script type="module">
+const colorSchemeOverride=localStorage.getItem('color-scheme');
+if(colorSchemeOverride&&!window.matchMedia(`(prefers-color-scheme: ${colorSchemeOverride})`).matches){
+  document.querySelectorAll('.color-scheme').forEach(el=>el.checked=true);
+}
+document.querySelectorAll('.color-scheme').forEach(el=>{
+  el.addEventListener('change',_=>{
+    if(el.checked){
+      localStorage.setItem('color-scheme',window.matchMedia('(prefers-color-scheme: light)').matches?'dark':'light');
+    }else{
+      localStorage.removeItem('color-scheme');
+    }
+  });
+});
+const langs=['en','fr'];
+const langOverride=localStorage.getItem('lang');
+const defaultLang=navigator.languages.map(it=>it.replace(/^([^-]+).*$/,'$1')).find(it=>langs.includes(it))??'en';
+if(langOverride&&langOverride!==defaultLang) localStorage.removeItem('lang');
+document.querySelectorAll('.language').forEach(el=>{
+  el.addEventListener('click',e=>{
+    e.preventDefault();
+    if(defaultLang==='fr') localStorage.setItem('lang','en');
+    else localStorage.removeItem('lang');
+    location.href='/resume';
+  });
+});
+</script>
+</body>
+</html>
