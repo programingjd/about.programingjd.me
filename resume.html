@@ -86,7 +86,7 @@ main{
     text-wrap:balance;
     p{
       display:grid;
-      place-items:center;
+      align-items:center;
       padding:.5em 0;
       flex:1 1 auto;
     }
@@ -152,8 +152,8 @@ main{
   </svg></a>
   <p>I have many interests, but my life has been shaped by two early passions:
   rock climbing and computer programming.</p>
-  <p>Following these interests has fueled a constant drive to learn and improve.
-  When your passion runs that deep, you naturally want to share it and give back.</p>
+  <p>They have fueled a constant drive to learn and improve, but
+  also to share and give back.</p>
   <p>I've been volunteering as a climbing coach and route setter since early on,
   teaching safety and movement to all levels.</p>
   <p>I bring that same passion to my professional life as a software engineer:
@@ -247,9 +247,11 @@ main{
   <p>With the mobile apps stable and mature, I shifted to the backend to address
   the architectural limitations in the Elasticsearch faceting engine.</p>
   <p>To handle the increasing scale of the data, I progressively re-engineered the existing solution,
-  taking advantage of Elasticsearch extensibility to add specialized logic through plugins.</p>
+  taking advantage of Elasticsearch extensibility to add specialized logic through native plugins.</p>
   <p>These improvements allowed us to extend its use on Raccourci's many destination websites,
   including high-profile and high-traffic sites.</p>
+  <p>Its flexibility also enabled extensive site-specific customization and the implementation
+  of complex domain-specific facets and sorts that couldn't be done with the old system.</p>
   <a href="#fairguest"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
     <use href="#next"/>
   </svg></a>
@@ -258,9 +260,9 @@ main{
   <a href="#elastic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
     <use href="#prev"/>
   </svg></a>
-  <p>I then used this new faceting system to start a new R&D project for online reputation analysis,
-  both at the micro level (individual locations representing specific customers)
-  and macro level (a touristic destination or a whole region).</p>
+  <p>I then used this new data architecture for a new R&D project aimed at analyzing online reputation,
+  both at the micro level (individual locations) and the macro level
+  (a touristic destination or a whole region).</p>
   <p>This required implementing the faceting solution for a new domain and extending it
   to support customizable dashboards aggregating a full range of metrics.</p>
   <p>The project also required solving the challenges of large-scale data ingestion.
