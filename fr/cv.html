@@ -303,11 +303,17 @@ main{
     <a href="#fairguest"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
       <use href="#prev"/>
     </svg></a>
-    <p>Un autre projet majeur que j'ai développé seul est une solution cartographique complète,
-    couvrant l'ensemble du globe, destinée à remplacer Google Maps ou Mapbox
-    sur l'ensemble des produits et sites réalisés par l'entreprise.</p>
+    <p>Un autre projet que j'ai mené seul est une solution cartographique complète,
+    couvrant tout le globe, destinée à remplacer Google&nbsp;Maps sur les produits et sites de l'entreprise.</p>
     <p>La première étape fut l'optimisation de la génération de tuiles vectorielles 3D (et de leur contenu),
     à partir de données libres d'accès : OpenStreetMap et les GeoTIFF ASTER GDEM V3.</p>
+    <p>Au niveau serveur, une optimisation de la mémoire et un cache exploitant la redondance des tuiles
+    ont permis une réduction drastique des coûts.</p>
+    <p>Pour optimiser le front-end, un fork de MapLibre distribué en Web Component a été nécessaire, ainsi qu'une
+    implementation en WebAssembly du clustering des marqueurs, afin d'améliorer la répartition des clusters.</p>
+    <p>La production actuelle (plus de cent millions de vues par mois) est assurée par un seul serveur,
+    avec une utilisation CPU minimale et moins de 64Go de RAM.</p>
+    <p></p>
     <a href="#projects"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
       <use href="#next"/>
     </svg></a>
