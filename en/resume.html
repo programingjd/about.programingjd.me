@@ -22,6 +22,12 @@ html{
   --link-color:light-dark(#08f,#0f68b8);
   --accent-color:#d42;
   --font-weight-adjustment:0;
+  --grid1:light-dark(#c04f3d,#5085a5);
+  --grid2:light-dark(#ca822f,#ed4628);
+  --grid3:light-dark(#d4a293,#f8e572);
+  --grid4:light-dark(#8aa95d,#1c705a);
+  --grid5:light-dark(#0a8ea5,#c97dff);
+  --grid-stroke-width:2;
   color-scheme:dark light only;
   accent-color:var(--accent-color);
   width:100%;height:100%;
@@ -57,7 +63,7 @@ header{
   top:0;left:0;right:0;
   padding:4px;
   display:grid;
-  justify-content:end;
+  justify-content:space-between;
   align-items:center;
   grid-template-columns:repeat(2,min-content);
   gap:1em;
@@ -94,6 +100,7 @@ main{
   grid-auto-rows:auto;
   gap:2em;
   section{
+    position:relative;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -111,7 +118,7 @@ main{
       padding:.5em 0;
       flex:1 1 auto;
     }
-    a:first-child,a:last-child{
+    a:first-of-type,a:last-of-type{
       flex:3 3 auto;
       display:grid;
       place-items:center;
@@ -121,15 +128,24 @@ main{
       &:focus-visible svg{color:var(--accent-color)}
       &:is(:hover,:focus-visible) svg{stroke-width:.067em;stroke-color:currentColor}
     }
+    &>svg[preserveAspectRatio="none"]{
+      position:absolute;
+      width:100dvw;height:calc(100% + 2em);
+      left:calc(50% - 50dvw);top:-1em;
+      opacity:.25;
+      pointer-events:none;
+    }
   }
 }
 @media(prefers-color-scheme:light){
   :root{
     color-scheme:light only;
     --font-weight-adjustment:100;
+    --grid-stroke-width:3;
     &:has(header input:checked){
       color-scheme:dark only;
       --font-weight-adjustment:0;
+      --grid-stroke-width:2;
     }
     header input.color-scheme{
       &~svg.light{display:block}
@@ -145,9 +161,11 @@ main{
   :root{
     color-scheme:dark only;
     --font-weight-adjustment:0;
+    --grid-stroke-width:2;
     &:has(header input:checked){
       color-scheme:light only;
       --font-weight-adjustment:100;
+      --grid-stroke-width:3;
     }
     header input.color-scheme{
       &~svg.light{display:none}
@@ -174,6 +192,18 @@ main{
 </header>
 <main>
 <section id="intro" tabindex="-1" aria-label="Intro">
+  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="fadeIntro" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
+        <stop offset="50%" stop-color="#fff" stop-opacity="0"/>
+      </linearGradient>
+      <mask id="maskIntro">
+        <rect width="100%" height="100%" fill="url(#fadeIntro)"/>
+      </mask>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid1)" mask="url(#maskIntro)"/>
+  </svg>
   <a href="#" aria-label="Top">
     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
   </a>
@@ -191,6 +221,18 @@ main{
   </a>
 </section>
 <section id="studies" tabindex="-1" aria-label="Studies">
+  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="fadeStudies" x1="100%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
+        <stop offset="50%" stop-color="#fff" stop-opacity="0"/>
+      </linearGradient>
+      <mask id="maskStudies">
+        <rect width="100%" height="100%" fill="url(#fadeStudies)"/>
+      </mask>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid2)" mask="url(#maskStudies)"/>
+  </svg>
   <a aria-label="Previous section: Intro" href="#intro">
     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
   </a>
@@ -211,6 +253,18 @@ main{
   </a>
 </section>
 <section id="houston" tabindex="-1" aria-label="Work in Houston">
+  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="fadeHouston" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
+        <stop offset="50%" stop-color="#fff" stop-opacity="0"/>
+      </linearGradient>
+      <mask id="maskHouston">
+        <rect width="100%" height="100%" fill="url(#fadeHouston)"/>
+      </mask>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid2)" mask="url(#maskHouston)"/>
+  </svg>
   <a href="#studies" aria-label="Previous section: Studies">
     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
   </a>
@@ -234,6 +288,18 @@ main{
   </a>
 </section>
 <section id="uncopt" tabindex="-1" aria-label="Self-Employment">
+  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="fadeUncopt" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
+        <stop offset="50%" stop-color="#fff" stop-opacity="0"/>
+      </linearGradient>
+      <mask id="maskUncopt">
+        <rect width="100%" height="100%" fill="url(#fadeUncopt)"/>
+      </mask>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid3)" mask="url(#maskUncopt)"/>
+  </svg>
   <a href="#houston" aria-label="Previous section: Work in Houston">
     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
   </a>
@@ -252,6 +318,18 @@ main{
   </a>
 </section>
 <section id="mobitour" tabindex="-1" aria-label="Mobitour App">
+  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="fadeMobitour" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
+        <stop offset="50%" stop-color="#fff" stop-opacity="0"/>
+      </linearGradient>
+      <mask id="maskMobitour">
+        <rect width="100%" height="100%" fill="url(#fadeMobitour)"/>
+      </mask>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid3)" mask="url(#maskMobitour)"/>
+  </svg>
   <a href="#uncopt" aria-label="Previous section: Self-Employment">
     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
   </a>
@@ -268,6 +346,18 @@ main{
   </a>
 </section>
 <section id="elastic" tabindex="-1" aria-label="Elasticsearch">
+  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="fadeElastic" x1="100%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
+        <stop offset="50%" stop-color="#fff" stop-opacity="0"/>
+      </linearGradient>
+      <mask id="maskElastic">
+        <rect width="100%" height="100%" fill="url(#fadeElastic)"/>
+      </mask>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid4)" mask="url(#maskElastic)"/>
+  </svg>
   <a href="#mobitour" aria-label="Previous section: Mobitour App">
     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
   </a>
@@ -284,6 +374,18 @@ main{
   </a>
 </section>
 <section id="fairguest" tabindex="-1" aria-label="Fairguest">
+  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="fadeFairguest" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
+        <stop offset="50%" stop-color="#fff" stop-opacity="0"/>
+      </linearGradient>
+      <mask id="maskFairguest">
+        <rect width="100%" height="100%" fill="url(#fadeFairguest)"/>
+      </mask>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid4)" mask="url(#maskFairguest)"/>
+  </svg>
   <a href="#elastic" aria-label="Previous section: Elasticsearch">
     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
   </a>
@@ -302,6 +404,18 @@ main{
   </a>
 </section>
 <section id="tmaps" tabindex="-1" aria-label="TouristicMaps">
+  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="fadeTmaps" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
+        <stop offset="50%" stop-color="#fff" stop-opacity="0"/>
+      </linearGradient>
+      <mask id="maskTmaps">
+        <rect width="100%" height="100%" fill="url(#fadeTmaps)"/>
+      </mask>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid5)" mask="url(#maskTmaps)"/>
+  </svg>
   <a href="#fairguest" aria-label="Previous section: Fairguest">
     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
   </a>
@@ -321,6 +435,18 @@ main{
   </a>
 </section>
 <section id="projects" tabindex="-1" aria-label="Personal Projects">
+  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="fadeProjects" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
+        <stop offset="50%" stop-color="#fff" stop-opacity="0"/>
+      </linearGradient>
+      <mask id="maskProjects">
+        <rect width="100%" height="100%" fill="url(#fadeProjects)"/>
+      </mask>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid5)" mask="url(#maskProjects)"/>
+  </svg>
   <a href="#tmaps" aria-label="Previous section: TouristicMaps">
     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
   </a>
@@ -349,6 +475,24 @@ main{
     <symbol id="prev" viewBox="0 0 16 16">
       <use href="#next" transform="rotate(180 8 8)"/>
     </symbol>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0V20M0 20H20" stroke="currentColor" stroke-width="var(--grid-stroke-width,2)"/>
+    </pattern>
+    <pattern id="grid1" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0V20M0 20H20" stroke="var(--grid1,currentColor)" stroke-width="var(--grid-stroke-width,2)"/>
+    </pattern>
+    <pattern id="grid2" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0V20M0 20H20" stroke="var(--grid2,currentColor)" stroke-width="var(--grid-stroke-width,2)"/>
+    </pattern>
+    <pattern id="grid3" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0V20M0 20H20" stroke="var(--grid3,currentColor)" stroke-width="var(--grid-stroke-width,2)"/>
+    </pattern>
+    <pattern id="grid4" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0V20M0 20H20" stroke="var(--grid4,currentColor)" stroke-width="var(--grid-stroke-width,2)"/>
+    </pattern>
+    <pattern id="grid5" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0V20M0 20H20" stroke="var(--grid5,currentColor)" stroke-width="var(--grid-stroke-width,2)"/>
+    </pattern>
   </defs>
 </svg>
 <script type="module">
