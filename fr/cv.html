@@ -17,17 +17,21 @@
 <link rel="stylesheet" href="/roboto-slab.css">
 <style>
 html{
-  --foreground-color:light-dark(#333,#ccc);
+  --foreground-color:light-dark(#333,#d1cfc0);
   --background-color:light-dark(#eee,#222);
-  --link-color:#3ce;--accent-color:#d42;
+  --link-color:light-dark(#08f,#0f68b8);
+  --accent-color:#d42;
   --font-weight-adjustment:0;
   color-scheme:dark light only;
   accent-color:var(--accent-color);
   width:100%;height:100%;
-  font:calc(400 + var(--font-weight-adjustment)) clamp(10pt, 6pt + .8vmin + .35vmax, 24pt)/1.35 sans-serif;
+  font:calc(400 + var(--font-weight-adjustment)) clamp(10pt,.5rem + .8vmin + .35vmax, 24pt)/1.35 sans-serif;
   background:var(--background-color);
   color:var(--foreground-color);
-  scroll-behavior:smooth;
+  :where(*){outline-color:var(--accent-color)}
+  @media(prefers-reduced-motion: no-preference){
+    scroll-behavior:smooth;
+  }
 }
 :where(*){margin:0;padding:0;box-sizing:border-box}
 .custom-font{position:relative}
@@ -75,8 +79,6 @@ header{
       inset:0;
       appearance:none;margin:0;padding:0;
       cursor:pointer;
-      width:2em;
-      height:2em;
       &~svg{
         display:none;
         padding:.5em;
@@ -102,6 +104,7 @@ main{
     letter-spacing:-.01em;
     line-height:calc(1.25em + 1vh);
     text-wrap:balance;
+    outline:none;
     p{
       display:grid;
       align-items:center;
@@ -113,7 +116,10 @@ main{
       display:grid;
       place-items:center;
       padding:1em;
-      svg{width:2em;height:2em}
+      svg{width:2em;height:2em;stroke-linecap:round}
+      outline:none;
+      &:focus-visible svg{color:var(--accent-color)}
+      &:is(:hover,:focus-visible) svg{stroke-width:.067em;stroke-color:currentColor}
     }
   }
 }
@@ -157,18 +163,20 @@ main{
 </head>
 <body class="custom-font">
 <header>
-  <a class="language" role="button" href="/en/resume" aria-label="passer du français à l'anglais / switch from french to english">fr</a>
+  <a class="language" role="button" href="/en/resume"
+     aria-label="Passer du français à l'anglais&#xa;Switch from french to english"
+     title="Passer du français à l'anglais&#xa;Switch from french to english">fr</a>
   <div>
-    <input class="color-scheme" type="checkbox" title="Inverser le mode clair/sombre">
-    <svg class="light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M136 16q-1-7-8-8-7 1-8 8v32h16zM54 43l23 23-11 11-23-23a8 8 0 0 1 11-11m-6 77H16q-7 1-8 8 1 7 8 8h32zm-5 82 23-23 11 11-23 23a8 8 0 1 1-11-11m77 6v32q1 7 8 8 7-1 8-8v-32zm82 5-23-23 11-11 23 23a8 8 0 1 1-11 11m6-77h32q7-1 8-8-1-7-8-8h-32zm5-82-23 23-11-11 23-23a8 8 0 1 1 11 11M192 128c0 35-29 64-64 64s-64-29-64-64 29-64 64-64 64 29 64 64"></path></svg>
-    <svg class="dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M184 160q22 0 40-10l17-8-6 18A112 112 0 1 1 96 21l18-6-8 17Q96 51 96 72c0 49 39 88 88 88"></path></svg>
+    <input class="color-scheme" type="checkbox" aria-label="Inverser le mode clair/sombre" title="Inverser le mode clair/sombre">
+    <svg aria-hidden="true" class="light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M136 16q-1-7-8-8-7 1-8 8v32h16zM54 43l23 23-11 11-23-23a8 8 0 0 1 11-11m-6 77H16q-7 1-8 8 1 7 8 8h32zm-5 82 23-23 11 11-23 23a8 8 0 1 1-11-11m77 6v32q1 7 8 8 7-1 8-8v-32zm82 5-23-23 11-11 23 23a8 8 0 1 1-11 11m6-77h32q7-1 8-8-1-7-8-8h-32zm5-82-23 23-11-11 23-23a8 8 0 1 1 11 11M192 128c0 35-29 64-64 64s-64-29-64-64 29-64 64-64 64 29 64 64"></path></svg>
+    <svg aria-hidden="true" class="dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M184 160q22 0 40-10l17-8-6 18A112 112 0 1 1 96 21l18-6-8 17Q96 51 96 72c0 49 39 88 88 88"></path></svg>
   </div>
 </header>
 <main>
-  <section id="intro">
-    <a href="#intro"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <use href="#prev"/>
-    </svg></a>
+  <section id="intro" tabindex="-1" aria-label="Intro">
+    <a href="#" aria-label="Début">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
+    </a>
     <p>J'ai de nombreux centres d'intérêt, mais deux grandes passions ont déterminé mon parcours :
     l'escalade et l'informatique (plus particulièrement la programmation).</p>
     <p>De ces passions découle une volonté constante d'apprendre et de progresser,
@@ -180,14 +188,14 @@ main{
     où j'échange constamment mes idées, mes connaissances et mon enthousiasme avec mes collègues.</p>
     <p>Je publie aussi tous mes projets personnels en open source pour que d'autres puissent
     en bénéficier.</p>
-    <a href="#school"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <use href="#next"/>
-    </svg></a>
+    <a href="#studies" aria-label="Section suivante: Etudes">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#next"/></svg>
+    </a>
   </section>
-  <section id="school">
-    <a href="#intro"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <use href="#prev"/>
-    </svg></a>
+  <section id="studies" tabindex="-1" aria-label="Etudes">
+    <a href="#intro" aria-label="Section précédente: Intro">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
+    </a>
     <p>Mes études ont été une conséquence directe de mes passions.</p>
     <p>Comme je codais déjà, j'ai préféré m'orienter vers des études scientifiques
     dans un domaine adjacent à l'informatique.
@@ -200,14 +208,14 @@ main{
     avec lr Prof. Mallet sur le développement du logiciel de modélisation GOCAD.
     Je me suis concentré sur l'implémentation de son algorithme DSI
     pour le lissage contraint des limites de couches maillées et des failles.</p>
-    <a href="#houston"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <use href="#next"/>
-    </svg></a>
+    <a href="#houston" aria-label="Section suivante: Travail à Houston">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#next"/></svg>
+    </a>
   </section>
-  <section id="houston">
-    <a href="#school"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <use href="#prev"/>
-    </svg></a>
+  <section id="houston" tabindex="-1" aria-label="Travail à Houston">
+    <a href="#studies" aria-label="Section précédente: Etudes">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
+    </a>
     <p>Grâce à ce travail sur GOCAD, j'ai obtenu un poste à Landmark Graphics (Halliburton)
     à Houston, principal centre de R&D du secteur pétrolier.
     C'était mon premier choix, car Landmark développait les logiciels les plus innovants
@@ -222,14 +230,14 @@ main{
     du modèle et d'améliorer ses prédictions.
     Le modèle était ensuite utilisé pour déterminer les stratégies de forage,
     optimiser les pipelines et le développement du champ en général.</p>
-    <a href="#uncopt"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <use href="#next"/>
-    </svg></a>
+    <a href="#uncopt" aria-label="Section suivante: Auto Entrepreneur">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#next"/></svg>
+    </a>
   </section>
-  <section id="uncopt">
-    <a href="#houston"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <use href="#prev"/>
-    </svg></a>
+  <section id="uncopt" tabindex="-1" aria-label="Auto Entrepreneur">
+    <a href="#houston" aria-label="Section précédente: Travail à Houston">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
+    </a>
     <p>Je suis ensuite revenu en France pour des raisons familiales.</p>
     <p>J'ai passé un an à faire du développement Android en tant qu'indépendant.</p>
     <p>Comme je n'étais pas satisfait des explorateurs de fichiers existants,
@@ -242,14 +250,14 @@ main{
     par le biais d'autres applications, que j'ai utilisé pour ajouter
     l'accès aux partages réseau, aux serveurs SFTP et aux services
     de stockage en ligne tels que Google Drive et Dropbox.</p>
-    <a href="#mobitour"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <use href="#next"/>
-    </svg></a>
+    <a href="#mobitour" aria-label="Section suivante: Application Mobitour">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#next"/></svg>
+    </a>
   </section>
-  <section id="mobitour">
-    <a href="#uncopt"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <use href="#prev"/>
-    </svg></a>
+  <section id="mobitour" tabindex="-1" aria-label="Applicaiton Mobitour">
+    <a href="#uncopt" aria-label="Section précédente: Travail à Houston">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
+    </a>
     <p>Une fois ce projet terminé, j'ai rejoint Raccourci, un leader du tourisme en France,
     comme leur seul développeur Android.</p>
     <p>J'ai mis en place une architecture modulaire permettant de gérer des centaines de variantes
@@ -258,14 +266,14 @@ main{
     des cartes personnalisées, le téléchargement hors‑ligne de cartes et données, des itinéraires multi‑étapes,
     le dépôt et la consultation d'avis textes et audio, ainsi que le déclenchement automatique de contenus
     texte ou audio en fonction de la position GPS ou de la proximité de balises NFC ou BLE.</p>
-    <a href="#elastic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <use href="#next"/>
-    </svg></a>
+    <a href="#elastic" aria-label="Section suivante: Elasticsearch">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#next"/></svg>
+    </a>
   </section>
-  <section id="elastic">
-    <a href="#mobitour"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <use href="#prev"/>
-    </svg></a>
+  <section id="elastic" tabindex="-1" aria-label="Elasticsearch">
+    <a href="#mobitour" aria-label="Section précédente: Application Mobitour">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
+    </a>
     <p>Une fois les applications mobiles stables et matures, je me suis tourné vers le backend pour
     lever les limites de l'architecture du moteur de facettes basé sur Elasticsearch.</p>
     <p>Pour répondre à l'évolution rapide du volume de données, j'ai remplacé progressivement la
@@ -276,14 +284,14 @@ main{
     ainsi que l'ajout de facettes et de tris complexes spécifiques au domaine,
     qui n'étaient pas possibles avec l'ancien système.</p>
     <p></p>
-    <a href="#fairguest"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <use href="#next"/>
-    </svg></a>
+    <a href="#fairguest" aria-label="Section suivante: Fairguest">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#next"/></svg>
+    </a>
   </section>
-  <section id="fairguest">
-    <a href="#elastic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <use href="#prev"/>
-    </svg></a>
+  <section id="fairguest" tabindex="-1" aria-label="Fairguest">
+    <a href="#elastic" aria-label="Section précédente: Elasticsearch">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
+    </a>
     <p>J'ai ensuite appliqué cette nouvelle architecture de données à un projet de R&D
     visant à analyser la réputation en ligne à différentes échelles, du niveau local
     jusqu'à l'échelle nationale.</p>
@@ -295,14 +303,14 @@ main{
     <p>J'ai pris en charge la totalité du backend et mené le projet en production.
     Il est depuis devenu une source de revenus conséquente, permettant de financer
     de nouveaux projets de R&D.</p>
-    <a href="#tmaps"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <use href="#next"/>
-    </svg></a>
+    <a href="#tmaps" aria-label="Section suivante: TouristicMaps">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#next"/></svg>
+    </a>
   </section>
-  <section id="tmaps">
-    <a href="#fairguest"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <use href="#prev"/>
-    </svg></a>
+  <section id="tmaps" tabindex="-1" aria-label="TouristicMaps">
+    <a href="#fairguest" aria-label="Section précédente: Fairguest">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
+    </a>
     <p>Un autre projet que j'ai mené seul est une solution cartographique complète,
     couvrant tout le globe, destinée à remplacer Google&nbsp;Maps sur les produits et sites de l'entreprise.</p>
     <p>La première étape fut l'optimisation de la génération de tuiles vectorielles 3D (et de leur contenu),
@@ -314,14 +322,14 @@ main{
     <p>La production actuelle (plus de cent millions de vues par mois) est assurée par un seul serveur,
     avec une utilisation CPU minimale et moins de 64Go de RAM.</p>
     <p></p>
-    <a href="#projects"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <use href="#next"/>
-    </svg></a>
+    <a href="#projects" tabindex="-1" aria-label="Section suivante: Projets persos">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#next"/></svg>
+    </a>
   </section>
-  <section id="projects">
-    <a href="#tmaps"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <use href="#prev"/>
-    </svg></a>
+  <section id="projects" tabindex="-1" aria-label="Projets persos">
+    <a href="#tmaps" aria-label="Section précédente: TouristicMaps">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
+    </a>
     <p>Peu après mon arrivée chez Raccourci, j'ai voulu plus de temps pour l'exploration d'autres sujets
     et technologies, à laquelle je consacrais déjà une bonne partie de mon temps libre.
     J'ai donc demandé (et obtenu) le passage à une semaine de travail de 4 jours.</p>
@@ -333,9 +341,9 @@ main{
     des aspects trop souvent relégués au second plan.</p>
     <p>Les librairies issues de ces explorations sont en accès libre et finissent souvent par être utilisées
     dans les projets de l'entreprise.</p>
-    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <use href="#next"/>
-    </svg></a>
+    <a href="#" aria-label="Début">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><use href="#prev"/></svg>
+    </a>
   </section>
 </main>
 <svg id="symbols" xmlns="http://www.w3.org/2000/svg">
